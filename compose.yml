@@ -1,0 +1,43 @@
+version: '3.8'
+networks:
+  rls-network:
+    name: rls.docker.internal
+services:
+  api:
+    container_name: rls-api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_HOST=postgres-db
+      - DATABASE_USER=app_user
+      - DATABASE_PASSWORD=passw0rd
+      - RAILS_ENV=development
+    volumes:
+      - ./:/usr/src/app
+    networks:
+      - rls-network
+    depends_on:
+      rls-db:
+        condition: service_healthy
+  rls-db:
+    container_name: rls-db
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: passw0rd
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "55432:5432"
+    networks:
+      - rls-network
+    healthcheck:
+      test: pg_isready
+      interval: 2s
+      timeout: 5s
+      retries: 30
