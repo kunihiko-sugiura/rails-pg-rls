@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative '../lib/multi_tenancy/schema_statements'
 
 require "rails"
 # Pick the frameworks you want:
@@ -27,6 +28,10 @@ module Backend
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
+
+    ActiveSupport.on_load(:active_record) do
+      ActiveRecord::ConnectionAdapters::AbstractAdapter.include MultiTenancy::SchemaStatements
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

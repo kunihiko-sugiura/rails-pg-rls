@@ -4,7 +4,6 @@ module MultiTenancy
   module SchemaStatements
     TENANT_POLICY_NAME = 'tenant_policy'
     SCHEMA_NAME = 'public'
-    # TODO: 設定を共通化したい
     APP_USER_NAME = 'app_user'
 
     # Tableに対する権限の付与: Table追加時に指定
