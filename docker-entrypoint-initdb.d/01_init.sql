@@ -1,6 +1,6 @@
 -- アプリケーション用のユーザーを作成
 CREATE ROLE app_user LOGIN PASSWORD 'passw0rd';
-CREATE ROLE operator_user LOGIN PASSWORD 'passw0rd';
+CREATE ROLE operator_user LOGIN PASSWORD 'passw0rd' CREATEDB;
 
 -- データベースの作成
 CREATE DATABASE rls_dev OWNER operator_user;
