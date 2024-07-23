@@ -31,15 +31,15 @@ RSpec.describe User, type: :model do
   context 'rls' do
     it '指定したtenantのuserのみアクセス許可される' do
       ApplicationRecord.with_tenant(tenant1.id) do
-        User.create(name: '名前1', tenant: tenant1)
+        User.create(name: 'tenant1', tenant: tenant1)
       end
       ApplicationRecord.with_tenant(tenant2.id) do
-        User.create(name: '名前1', tenant: tenant2)
+        User.create(name: 'tenant2', tenant: tenant2)
       end
       ApplicationRecord.with_tenant(tenant1.id) do
         users = User.all
         expect(users.size).to eq 1
-        expect(users.first.name).to eq '名前1'
+        expect(users.first.name).to eq 'tenant1'
       end
     end
   end
