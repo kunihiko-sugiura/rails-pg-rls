@@ -17,6 +17,7 @@ RLSはテーブルの行単位に対するアクセス制限を可能とし、�
 |---------------|--------------------------------|------------------|
 | operator_user | SET ROLE(app_user), CREATEDB   | Migration, Rspec |
 | app_user      | SELECT, INSERT, UPDATE, DELETE | Application実行    |
+
 ※ Rspecはapp_userで実行したいが、insertしたデータを削除するためにoperator_userで実行しテストパターンの実行時にapp_userへ一時的にROLL切り替えする様に対応。
 
 ### DB Migration時に適用する権限
