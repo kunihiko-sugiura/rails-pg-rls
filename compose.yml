@@ -25,7 +25,7 @@ services:
         condition: service_healthy
   rls-db:
     container_name: rls-db
-    image: postgres
+    image: postgres:17
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: passw0rd
