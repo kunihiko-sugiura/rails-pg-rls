@@ -55,7 +55,7 @@ docker exec -it rls-api rails c
 railsのcontainerにshellで入った後に以下を実行
 
 ```sh
-bundle exec rspec;
+bundle exec rspec
 ```
 
 ## 関連ファイルおよび補足内容
