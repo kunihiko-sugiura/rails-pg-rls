@@ -8,14 +8,5 @@ class CreateTenant < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
-
-    reversible do |dir|
-      dir.up do
-        grant_table(TABLE_NAME)
-      end
-      dir.down do
-        revoke_table(TABLE_NAME)
-      end
-    end
   end
 end

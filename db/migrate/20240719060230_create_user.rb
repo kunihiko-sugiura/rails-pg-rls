@@ -12,11 +12,9 @@ class CreateUser < ActiveRecord::Migration[7.1]
 
     reversible do |dir|
       dir.up do
-        grant_table(TABLE_NAME)
         create_rls_policy(TABLE_NAME)
       end
       dir.down do
-        revoke_table(TABLE_NAME)
         drop_rls_policy(TABLE_NAME)
       end
     end

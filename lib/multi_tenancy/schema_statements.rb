@@ -3,28 +3,6 @@
 module MultiTenancy
   module SchemaStatements
     TENANT_POLICY_NAME = 'tenant_policy'
-    SCHEMA_NAME = 'public'
-    APP_USER_NAME = 'app_user'
-
-    # Tableに対する権限の付与: Table追加時に指定
-    def grant_table(table_name)
-      puts APP_USER_NAME
-      execute "GRANT SELECT, INSERT, UPDATE, DELETE ON #{table_name} TO #{APP_USER_NAME};"
-    end
-
-    # Tableに対する権限の削除
-    def revoke_table(table_name)
-      execute "REVOKE SELECT, INSERT, UPDATE, DELETE ON #{table_name} FROM #{APP_USER_NAME};"
-    end
-
-    # Tableのsequenceに対する権限の付与: idにsequenceを利用したTable追加時に指定
-    def grant_sequence(table_name)
-      execute "GRANT USAGE ON #{table_name}_id_seq TO #{APP_USER_NAME};"
-    end
-
-    def remove_sequence(table_name)
-      execute "REVOKE USAGE ON #{table_name}_id_seq TO #{APP_USER_NAME};"
-    end
 
     # Tableに対するRLSの権限付与: RLSが必要なTable追加時に指定
     def create_rls_policy(table_name)

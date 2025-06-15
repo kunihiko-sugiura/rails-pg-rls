@@ -25,19 +25,14 @@ require 'rspec/rails'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
-begin
-  # 標準ではdb/schema.rbをもとにテスト用のDBを構築するが、RLS policyはschema.rbの定義に含まれないためDB構築をmigrationで行う。
-  # その他の方法として、スキーマ定義の代わりにDB構造はSQL定義（db/structure.sql）を利用すれば、RLS policy定義も含まれる
-  # ActiveRecord::Migration.maintain_test_schema!
 
-  # パフォーマンスが犠牲になるが、RLSを policyを適用するためMigrationを実行する
-  Rails.application.load_tasks
-  Rake::Task['db:drop'].invoke
-  Rake::Task['db:create'].invoke
-  Rake::Task['db:migrate'].invoke
-rescue ActiveRecord::PendingMigrationError => e
-  abort e.to_s.strip
-end
+# begin
+#   # 標準ではdb/schema.rbをもとにテスト用のDBを構築するが、RLS policyはschema.rbの定義に含まれないためDB構築をmigrationで行う。
+#   # その他の方法として、スキーマ定義の代わりにDB構造はSQL定義（db/structure.sql）を利用すれば、RLS policy定義も含まれる
+#   # ActiveRecord::Migration.maintain_test_schema!
+# rescue ActiveRecord::PendingMigrationError => e
+#   abort e.to_s.strip
+# end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
