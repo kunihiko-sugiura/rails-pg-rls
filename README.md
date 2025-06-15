@@ -43,7 +43,7 @@ docker compose down -v
 ### rails実行環境にshellで入る
 ```sh
 docker exec -it rls-api /bin/bash
-bundle exec rails db:migrate;
+DATABASE_USER=operator_user bundle exec rails db:migrate;
 ```
 
 container内のRails Consoleに直接入る場合は以下。
