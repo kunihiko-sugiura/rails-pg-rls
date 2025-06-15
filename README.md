@@ -55,8 +55,7 @@ docker exec -it rls-api rails c
 railsのcontainerにshellで入った後に以下を実行
 
 ```sh
-RAILS_ENV=test bundle exec rails db:migrate:reset;
-RAILS_ENV=test bundle exec rspec;
+bundle exec rspec;
 ```
 
 ## 関連ファイルおよび補足内容
